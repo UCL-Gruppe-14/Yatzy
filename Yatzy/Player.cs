@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
@@ -35,7 +36,8 @@ namespace Yatzy
         public int Hus;
         public int Chance;
         public int Yatzy;
-        //public int Total = Sum + Bonus + etPar + toPar + treEns + fireEns + lilleStraight + storStraight + Hus + Chance + Yatzy;
+        public int Total;
+
 
         
         public void setName()
@@ -56,6 +58,8 @@ namespace Yatzy
         {
             Array.Sort(Tur);
             Console.WriteLine("[{0} , {1} , {2} , {3} , {4}]", Tur[1], Tur[2], Tur[3], Tur[4], Tur[5]);
+
+
         }
         public void Omslag()
         {
@@ -227,16 +231,15 @@ namespace Yatzy
         public void PointSum()
         {
             int sum = Enere + Toere + Treere + Firere + Femmere + Seksere;
-            //PointTotal();
+            PointTotal();
         }
-
         public void PointBonus()
         {
             
             if (Sum >= 63)
             {
                 Bonus = 50;
-                //PointTotal();
+                PointTotal();
             }
         }
         public void PointEtPar() 
@@ -249,39 +252,182 @@ namespace Yatzy
                     Console.WriteLine("Vil du tildele 2 {0}'ere?\nTryk 1 for ja\nTryk 2 for nej", Tur[1]);
                     valg = int.Parse(Console.ReadLine());
                     if (valg == 1)
-                        etPar = valg;
+                    {
+                        etPar = Tur[1] + Tur[2];
+                        PointTotal();
+                    }
+                        
                 }
                 if (Tur[2] == Tur[3])
                 {
                     Console.WriteLine("Vil du tildele 2 {0}'ere?\nTryk 1 for ja\nTryk 2 for nej", Tur[2]);
                     valg = int.Parse(Console.ReadLine());
                     if (valg == 1)
-                        etPar = valg;
+                    {
+                        etPar = Tur[2] + Tur[3];
+                        PointTotal();
+                    }
                 }
                 if (Tur[3] == Tur[4])
                 {
                     Console.WriteLine("Vil du tildele 2 {0}'ere?\nTryk 1 for ja\nTryk 2 for nej", Tur[3]);
                     valg = int.Parse(Console.ReadLine());
                     if (valg == 1)
-                        etPar = valg;
+                    {
+                        etPar = Tur[3] + Tur[4];
+                        PointTotal();
+                    }
+                }
+                if (Tur[4] == Tur[5])
+                {
+                    Console.WriteLine("Vil du tildele 2 {0}'ere?\nTryk 1 for ja\nTryk 2 for nej", Tur[3]);
+                    valg = int.Parse(Console.ReadLine());
+                    if (valg == 1)
+                    {
+                        etPar = Tur[4] + Tur[5];
+                        PointTotal();
+                    }
+                }
+            } 
+        }
+        public void PointToPar()
+        {
+            if(toPar == 0 && ((Tur[1] == Tur[2] && Tur[3] == Tur[4]) || (Tur[2] == Tur[3] && Tur[4] == Tur[5])))
+            {
+                Console.WriteLine("Vil du tildele to par?\nTryk 1 for ja\nTryk 2 for nej");
+                int valg = int.Parse(Console.ReadLine());
+                if (valg == 1 && (Tur[1] == Tur[2] && Tur[3] == Tur[4]))
+                {
+                    toPar = Tur[1] + Tur[2] + Tur[3] + Tur[4];
+                    PointTotal();
+                }
+                else if (valg == 1)
+                {
+                    toPar = Tur[2] + Tur[3] + Tur[4] + Tur[5];
+                    PointTotal();
                 }
             }
         }
-        
-        /*public void PointTotal()
+        public void PointTreEns()
+        {
+            if(treEns == 0 && ((Tur[1] == Tur[2] && Tur[2] == Tur[3]) || (Tur[3] == Tur[4] && Tur[4] == Tur[5])))
+            {
+                Console.WriteLine("Vil du tildele tre ens?\nTryk 1 for ja\nTryk 2 for nej");
+                int valg = int.Parse(Console.ReadLine());
+                if (valg == 1 && (Tur[1] == Tur[2] && Tur[2] == Tur[3]))
+                {
+                    treEns = Tur[1] + Tur[2] + Tur[3];
+                    PointTotal();
+                }
+                else if(valg == 1)
+                {
+                    treEns = Tur[3] + Tur[4] + Tur[5];
+                    PointTotal();
+
+                }
+            }
+
+
+        }
+        public void PointFireEns()
+        {
+            if (fireEns == 0 && (Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[3] == Tur[4]))                
+            {
+                Console.WriteLine("Vil du tildele 4 ens\nTryk 1 for ja\nTryk 2 for nej");
+                int valg = int.Parse(Console.ReadLine());
+                fireEns = Tur[1] + Tur[2] + Tur[3] + Tur[4];
+                PointTotal();   
+
+            }
+
+            else if(fireEns == 0 && (Tur[2] == Tur[3] && Tur[3] == Tur[4] && Tur[4] == Tur[5]))
+            {
+                Console.WriteLine("Vil du tildele 4 ens\nTryk 1 for ja\nTryk 2 for nej");
+                int valg = int.Parse(Console.ReadLine());
+                fireEns = Tur[2] + Tur[3] + Tur[4] + Tur[5];
+                PointTotal();
+            }
+
+
+        }
+        public void PointLilleStraight()
         {
 
-            Total = Sum + Bonus + etPar + toPar + treEns + fireEns + lilleStraight + storStraight + Hus + Chance + Yatzy;
-        }*/
-        //public int Bonus;
-       // public int etPar;
-        //public int toPar;
-        //public int treEns;
-        //public int fireEns;
-        //public int lilleStraight;
-        //public int storStraight;
-        //public int Hus;
-        //public int Chance;
-        //public int Yatzy;
+            if (lilleStraight == 0 && (Tur[1] == 1 && Tur[2] == 2 && Tur[3] == 3 && Tur[4] == 4))
+            {
+                Console.WriteLine("Vil du tildele 15 point til Lille Straight?\nTryk 1 for ja\nTryk 2 for nej");
+                int valg = int.Parse(Console.ReadLine());
+                if(valg == 1) 
+                {
+                 lilleStraight = 15;
+                    PointTotal();
+                }
+
+            }
+
+        }
+        public void PointStorStraight()
+        {
+            if(storStraight == 0 && (Tur[1] == 2 && Tur[2] == 3 && Tur[3] == 4 && Tur[4] == 5 && Tur[5] == 6))
+            {
+                int valg;
+                Console.WriteLine("Vil du tildele 20 points til Store Straight?\nTryk 1 for ja\nTryk 2 for nej");
+                valg = int.Parse(Console.ReadLine());
+                if(valg == 1)
+                {
+                    storStraight = 20;
+                    PointTotal();
+                }
+            }
+        }
+        public void PointHus()
+        {
+            if(Hus == 0 && (Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[4] == Tur[5] && Tur[3] != Tur[4]))
+            {
+                Console.WriteLine("Vil du tildele {0} til Hus?\nTryk 1 for ja\nTryk 2 for nej",Hus);
+                int valg = int.Parse(Console.ReadLine());
+                if (valg == 1)
+                {
+                    Hus = Tur[1] + Tur[2] + Tur[3] + Tur[4] + Tur[5];
+                }
+            }
+            else if (Hus == 0 && (Tur[1] == Tur[2] && Tur[3] == Tur[4] && Tur[4] == Tur[5] && Tur[2] != Tur[3]))
+            {
+                Console.WriteLine("Vil du tildele {0} til Hus?\nTryk 1 for ja\nTryk 2 for nej", Hus);
+                int valg = int.Parse(Console.ReadLine());
+                if (valg == 1)
+                {
+                    Hus = Tur[1] + Tur[2] + Tur[3] + Tur[4] + Tur[5];
+                }
+            }
+        }
+        public void PointChance()
+        {
+            if(Chance == 0)
+            {
+                Console.WriteLine("Vil du bruge chancen?\nTryk 1 for ja\n Tryk 2 for nej");
+                int valg = int.Parse(Console.ReadLine());
+                if(valg == 1)
+                {
+                    Chance = Tur[1] + Tur[2] + Tur[3] + Tur[4] + Tur[5];
+                    PointTotal();
+                }
+            }
+        }
+        public void PointYatzy()
+        {
+            if (Yatzy == 0 && Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[3] == Tur[4] && Tur[4] == Tur[5])
+                  
+            {
+                Console.WriteLine("Vil du tildele Yatzy?\nTryk 1 for ja\nTryk 2 for nej");
+                int valg = int.Parse(Console.ReadLine());
+                if (valg == 1)
+                {
+                    Yatzy = Tur[1] + Tur[2] + Tur[3] + Tur[4] + Tur[5];
+                    PointTotal();
+                }
+            }
+        }
+        public int PointTotal() => Total = Sum + Bonus + etPar + toPar + treEns + fireEns + lilleStraight + storStraight + Hus + Chance + Yatzy;
     }     
 }
