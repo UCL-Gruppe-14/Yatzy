@@ -46,43 +46,29 @@ namespace Yatzy
             
 
             p1.setName();
-            do
+            if (antalSpillere == 1)
             {
-                if(antalSpillere == 1)
+                for (int i = 1; i <= 15; i++)
                 {
-                    for (int i = 1; i <= 15; i++)
+                    Console.WriteLine(p1.Navn + "'s tur");
+                    p1.ChangeTur();
+                    p1.Slag();
+                    for (int x = 1; x <= 2; x++)
                     {
-                        Console.WriteLine(p1.Navn + "'s tur");
-                        p1.ChangeTur();
-                        p1.Slag();
-                        for(int x = 1; x <= 2; x++)
-                        {
-                            p1.Omslag();
-                            p1.Slag();
-                        }
-                        p1.PointEnere();
-                        p1.PointToere();
-                        p1.PointTreere();
-                        p1.PointFirere();
-                        p1.PointFemmere();
-                        p1.PointSeksere();
-                        p1.PointBonus();
-
-                        
+                       p1.Omslag();
+                       p1.Slag();
+                    }
+                    p1.PointEnere();
+                    p1.PointToere();
+                    p1.PointTreere();
+                    p1.PointFirere();
+                    p1.PointFemmere();
+                    p1.PointSeksere();
+                    p1.PointBonus();
                     }
                     Console.WriteLine("Spillet er slut, pointsne er talt op, og x vandt");
                 }
-                Console.WriteLine("{0}'s tur", p1.Navn);
-                //Pointtavle();
-                p1.ChangeTur();
-                p1.Slag(); ;
-                for (int i = 0; i <= 1; i++)
-                {
-                    p1.Omslag();
-                    p1.Slag();
-                }
-               
-            } while (rigtigtValg);
+            }
 
         }
     }
