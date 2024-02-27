@@ -51,12 +51,17 @@ namespace Yatzy
                 //Pointtavle();
                 p1.ChangeTur();
                 p1.Slag(); ;
-                for (int i = 0; i <= 2; i++)
+                for (int i = 0; i <= 1; i++)
                 {
                     p1.Omslag();
                     p1.Slag();
-
                 }
+                p1.PointEnere();
+                p1.PointToere();
+                p1.PointTreere();
+                p1.PointFirere();
+                p1.PointFemmere();
+                p1.PointSeksere();
             } while (rigtigtValg);
 
         }    
