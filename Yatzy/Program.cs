@@ -18,10 +18,9 @@ namespace Yatzy
             //p1.ChangeTur();
             //p1.Slag();
 
-            Console.WriteLine("Velkommen til YATZY\nSpillet der samler og knækker familier og venskaber!");
+            /*Console.WriteLine("Velkommen til YATZY\nSpillet der samler og knækker familier og venskaber!");
             Console.Write("Vælg antal spillere: ");
             antalSpillere = int.Parse(Console.ReadLine());
-            int antalSpiller= Convert.ToInt32(Console.ReadLine());
             switch (antalSpillere)
             {
                 case 1:
@@ -42,15 +41,15 @@ namespace Yatzy
                 default:
                     Console.WriteLine("Forkert Input");
                     break;
-                }
-            
+            }*/
 
-            p1.setName();
-            if (antalSpillere == 1)
+
+            //p1.setName();
+            //if (antalSpillere == 1)
             {
                 for (int i = 1; i <= 15; i++)
                 {
-                    Console.WriteLine(p1.Navn + "'s tur");
+                    //Console.WriteLine(p1.Navn + "'s tur");
                     p1.ChangeTur();
                     p1.Slag();
                     for (int x = 1; x <= 2; x++)
@@ -65,11 +64,18 @@ namespace Yatzy
                     p1.PointFemmere();
                     p1.PointSeksere();
                     p1.PointBonus();
-                    }
-                    Console.WriteLine("Spillet er slut, pointsne er talt op, og x vandt");
+                    p1.PointEtPar();
+                    p1.PointToPar();
+                    p1.PointTreEns();
+                    p1.PointFireEns();
+                    p1.PointLilleStraight();
+                    p1.PointStorStraight();
+                    p1.PointHus();
+                    p1.PointYatzy();
+                    p1.PointChance();
                 }
+                Console.WriteLine("Spillet er slut, pointsne er talt op, og x vandt med: {0} point", p1.PointTotal());
             }
-
         }
     }
 }
