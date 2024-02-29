@@ -57,22 +57,12 @@ namespace Yatzy
                        p1.Omslag();
                        p1.Slag();
                     }
-                    p1.PointEnere();
-                    p1.PointToere();
-                    p1.PointTreere();
-                    p1.PointFirere();
-                    p1.PointFemmere();
-                    p1.PointSeksere();
-                    p1.PointBonus();
-                    p1.PointEtPar();
-                    p1.PointToPar();
-                    p1.PointTreEns();
-                    p1.PointFireEns();
-                    p1.PointLilleStraight();
-                    p1.PointStorStraight();
-                    p1.PointHus();
-                    p1.PointYatzy();
-                    p1.PointChance();
+                    p1.PointTavle();
+                    do
+                    {
+                        p1.Point();
+                        p1.PointTavle();
+                    } while (p1.tildelt == false);
                 }
                 Console.WriteLine("Spillet er slut, pointsne er talt op, og x vandt med: {0} point", p1.PointTotal());
             }

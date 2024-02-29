@@ -6,19 +6,16 @@ using System.Threading.Tasks;
 
 namespace Yatzy
 {
-    internal class Scoreboard
+    internal class Scoreboard : Player
     {
-        public Player player;
+        
         private int player1;
         private int player2;
         private int roundCount;
 
 
-        // Implementation of Player class
-        public Scoreboard()
-        {
-            player = new Player();
-        }
+        
+        
 
         public void DisplayScoreBoard(int player1, int player2)
         {
