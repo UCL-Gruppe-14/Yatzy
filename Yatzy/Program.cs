@@ -67,11 +67,10 @@ namespace Yatzy
                     p1.Omslag();
                     p1.Slag();
                 }
-                p1.PointTavle();
                 do
                 {
-                    p1.Point();
                     p1.PointTavle();
+                    p1.Point();
                 } while (p1.tildelt == false);
             }
             Console.WriteLine("Spillet er slut, pointsne er talt op, og x vandt med: {0} point", p1.PointTotal());

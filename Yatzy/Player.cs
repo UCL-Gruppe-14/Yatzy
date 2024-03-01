@@ -22,7 +22,8 @@ namespace Yatzy
 
         public String Navn;
         public int Enere, Toere, Treere, Firere, Femmere, Seksere, Sum, Bonus, etPar, toPar, treEns, fireEns, lilleStraight, storStraight, Hus, Chance, Yatzy, Total;
-        public string s1, s2, s3, s4, s5, s6,s7, s8, s9, s10, s11, s12, s13, s14, s15;
+        public string s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15;
+        int sum;
 
 
 
@@ -402,10 +403,10 @@ namespace Yatzy
         }
         public void PointHus()
         {
-            if(Hus == 0 && (Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[4] == Tur[5] && Tur[3] != Tur[4]) && tildelt == false && s13 != "-")
+            if(Hus == 0 && (Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[4] == Tur[5] && Tur[3] != Tur[4] ) && tildelt == false && s13 != "-")
             {
-                
-                Console.WriteLine("Vil du tildele {0} til Hus?\nTryk 1 for ja\nTryk 2 for nej",Hus);
+                sum = Tur[1] + Tur[2] + Tur[3] + Tur[4] + Tur[5];
+                Console.WriteLine("Vil du tildele {0} til Hus?\nTryk 1 for ja\nTryk 2 for nej",sum);
                 int valg = int.Parse(Console.ReadLine());
                 if (valg == 1)
                 {
@@ -417,7 +418,8 @@ namespace Yatzy
             }
             else if (Hus == 0 && (Tur[1] == Tur[2] && Tur[3] == Tur[4] && Tur[4] == Tur[5] && Tur[2] != Tur[3]) && tildelt == false && s13 != "-")
             {
-                Console.WriteLine("Vil du tildele {0} til Hus?\nTryk 1 for ja\nTryk 2 for nej", Hus);
+                sum = Tur[1] + Tur[2] + Tur[3] + Tur[4] + Tur[5];
+                Console.WriteLine("Vil du tildele {0} til Hus?\nTryk 1 for ja\nTryk 2 for nej", sum);
                 int valg = int.Parse(Console.ReadLine());
                 if (valg == 1)
                 {
@@ -463,23 +465,83 @@ namespace Yatzy
         {
             Console.WriteLine("Spiller:        " + Navn);
             Console.WriteLine("-------------------");
-            Console.WriteLine("Enere:          " + s1);
-            Console.WriteLine("Toere:          " + s2);
-            Console.WriteLine("Treere:         " + s3);
-            Console.WriteLine("Firere:         " + s4);
-            Console.WriteLine("Femmere:        " + s5);
-            Console.WriteLine("Seksere:        " + s6);
+            Console.Write("Enere:          ");
+            if (s1 == "-")
+                Console.WriteLine(s1);
+            else 
+                Console.WriteLine(Enere);
+            Console.Write("Toere:          ");
+            if (s2 == "-")
+                Console.WriteLine(s2);
+            else
+                Console.WriteLine(Toere);
+            Console.Write("Treere:         ");
+            if (s3 == "-")
+                Console.WriteLine(s3);
+            else
+                Console.WriteLine(Treere);
+            Console.Write("Firere:         ");
+            if (s4 == "-")
+                Console.WriteLine(s4);
+            else
+                Console.WriteLine(Firere);
+            Console.Write("Femmere:        ");
+            if (s5 == "-")
+                Console.WriteLine(s5);
+            else
+                Console.WriteLine(Femmere);
+            Console.Write("Seksere:        ");
+            if (s6 == "-")
+                Console.WriteLine(s6);
+            else
+                Console.WriteLine(Seksere);
             Console.WriteLine("Sum             " + Sum);
             Console.WriteLine("Bonus           " + Bonus);
-            Console.WriteLine("Et Par:         " + s7);
-            Console.WriteLine("To Par:         " + s8);
-            Console.WriteLine("Tre Ens:        " + s9);
-            Console.WriteLine("Fire Ens:       " + s10);
-            Console.WriteLine("LilleStraight:  " + s11);
-            Console.WriteLine("StorStraight:   " + s12);
-            Console.WriteLine("Hus:            " + s13);
-            Console.WriteLine("Chance:         " + s14);
-            Console.WriteLine("Yatzy:          " + s15);
+            Console.Write("Et Par:         ");
+            if (s7 == "-")
+                Console.WriteLine(s7);
+            else
+                Console.WriteLine(etPar);
+            Console.Write("To Par:         ");
+            if (s8 == "-")
+                Console.WriteLine(s8);
+            else
+                Console.WriteLine(toPar);
+            Console.Write("Tre Ens:        ");
+            if (s9 == "-")
+                Console.WriteLine();
+            else
+                Console.WriteLine(Seksere);
+            Console.Write("Fire Ens:       ");
+            if (s10 == "-")
+                Console.WriteLine(s10);
+            else
+                Console.WriteLine(Seksere);
+            Console.Write("LilleStraight:  " + s11);
+            if (s11 == "-")
+                Console.WriteLine(s11);
+            else
+                Console.WriteLine(lilleStraight);
+            Console.Write("StorStraight:   ");
+            if (s12 == "-")
+                Console.WriteLine(s12);
+            else
+                Console.WriteLine(storStraight);
+            Console.Write("Hus:            ");
+            if (s13 == "-")
+                Console.WriteLine(s13);
+            else
+                Console.WriteLine(Hus);
+            Console.Write("Chance:         ");
+            if (s14 == "-")
+                Console.WriteLine(s14);
+            else
+                Console.WriteLine(Chance);
+            Console.Write("Yatzy:          ");
+            if (s15 == "-")
+                Console.WriteLine(s15);
+            else
+                Console.WriteLine(Yatzy);
             Console.WriteLine("Total:          " + Total);
         }
         public void Point()
