@@ -32,16 +32,12 @@ namespace Yatzy
             Console.Write("Hvad er dit navn: ");
             Navn = Console.ReadLine();
         }
-
-        
         public void ChangeTur()
         {
-            Tur[0] = 0;
-            Tur[1] = r.Next(1, 7);
-            Tur[2] = r.Next(1, 7);
-            Tur[3] = r.Next(1, 7);
-            Tur[4] = r.Next(1, 7);
-            Tur[5] = r.Next(1, 7);
+            for (int i = 1; i < Tur.Length; i++)
+            {
+                Tur[i] = r.Next(1, 7);
+            }
         }
         public void Slag()
         {
@@ -61,7 +57,7 @@ namespace Yatzy
                 int terning = int.Parse(Console.ReadLine());
                 Tur[terning] = r.Next(1, 7);
             }
-            
+
         }
         public void PointEnere()
         {
@@ -157,17 +153,17 @@ namespace Yatzy
                 sum = sum + 4;
             if (Firere == 0 && sum > 0 && tildelt == false && s4 != "-")
             {
-                 
+
                 Console.WriteLine("Vil du tildele {0} til Firere?\n1: ja\n2: nej", sum);
                 valg = int.Parse(Console.ReadLine());
                 if (valg == 1)
-                { 
+                {
                     Firere = sum;
                     PointSum();
                     tildelt = true;
                 }
             }
-            
+
         }
         public void PointFemmere()
         {
@@ -183,9 +179,9 @@ namespace Yatzy
                 sum = sum + 5;
             if (Tur[5] == 5)
                 sum = sum + 5;
-            if (Femmere == 0 && sum > 0 && tildelt == false && s5 != "-") 
+            if (Femmere == 0 && sum > 0 && tildelt == false && s5 != "-")
             {
-                
+
                 Console.WriteLine("Vil du tildele {0} til Femmere?\n1: ja\n2: nej", sum);
                 valg = int.Parse(Console.ReadLine());
                 if (valg == 1)
@@ -210,12 +206,12 @@ namespace Yatzy
                 sum = sum + 6;
             if (Tur[5] == 6)
                 sum = sum + 6;
-            if (Seksere == 0 && sum > 0 && tildelt == false && s6 != "-") 
+            if (Seksere == 0 && sum > 0 && tildelt == false && s6 != "-")
             {
-                
+
                 Console.WriteLine("Vil du tildele {0} til Seksere?\n1: ja\n2: nej", sum);
                 valg = int.Parse(Console.ReadLine());
-                if (valg == 1) 
+                if (valg == 1)
                 {
                     Seksere = sum;
                     PointSum();
@@ -230,17 +226,17 @@ namespace Yatzy
         }
         public void PointBonus()
         {
-            
+
             if (Sum >= 63)
             {
                 Bonus = 50;
                 PointTotal();
             }
         }
-        public void PointEtPar() 
+        public void PointEtPar()
         {
             int valg = 0;
-            if(etPar == 0 && (Tur[1] == Tur[2] || Tur[2] == Tur[3] || Tur[3] == Tur[4] || Tur[4] == Tur[5]) && tildelt == false && s7 != "-")
+            if (etPar == 0 && (Tur[1] == Tur[2] || Tur[2] == Tur[3] || Tur[3] == Tur[4] || Tur[4] == Tur[5]) && tildelt == false && s7 != "-")
             {
                 if (Tur[1] == Tur[2])
                 {
@@ -252,7 +248,7 @@ namespace Yatzy
                         PointTotal();
                         tildelt = true;
                     }
-                        
+
                 }
                 else if (Tur[2] == Tur[3])
                 {
@@ -287,7 +283,7 @@ namespace Yatzy
                         tildelt = true;
                     }
                 }
-            } 
+            }
         }
         public void PointToPar()
         {
@@ -298,7 +294,7 @@ namespace Yatzy
             int e = 0;
             int f = 0;
             int sum = 0;
-            for (int i = 1;  i < Tur.Length; i++)
+            for (int i = 1; i < Tur.Length; i++)
             {
                 a++;
                 b++;
@@ -307,17 +303,17 @@ namespace Yatzy
                 e++;
                 f++;
             }
-            if (1 == 2)
+            if (a == 2)
                 sum = 1 * 2;
-            if (2 == 2)
+            if (b == 2)
                 sum = sum + (2 * 2);
-            if (3 == 2)
-                sum = sum + (3 * 2); 
-            if (4 == 2)
+            if (c == 2)
+                sum = sum + (3 * 2);
+            if (d == 2)
                 sum = sum + (4 * 2);
-            if ( 5 == 2)
+            if (e == 2)
                 sum = sum + (5 * 2);
-            if(6 == 2)
+            if (f == 2)
                 sum = sum + (6 * 2);
             toPar = sum;
             PointTotal();
@@ -325,7 +321,7 @@ namespace Yatzy
         }
         public void PointTreEns()
         {
-            if(treEns == 0 && ((Tur[1] == Tur[2] && Tur[2] == Tur[3]) || (Tur[3] == Tur[4] && Tur[4] == Tur[5])) && tildelt == false && s9 != "-")
+            if (treEns == 0 && ((Tur[1] == Tur[2] && Tur[2] == Tur[3]) || (Tur[3] == Tur[4] && Tur[4] == Tur[5])) && tildelt == false && s9 != "-")
             {
                 Console.WriteLine("Vil du tildele tre ens?\nTryk 1 for ja\nTryk 2 for nej");
                 int valg = int.Parse(Console.ReadLine());
@@ -335,7 +331,7 @@ namespace Yatzy
                     PointTotal();
                     tildelt = true;
                 }
-                else if(valg == 1)
+                else if (valg == 1)
                 {
                     treEns = Tur[3] + Tur[4] + Tur[5];
                     PointTotal();
@@ -347,7 +343,7 @@ namespace Yatzy
         {
             int antal = 0;
             int værdi = 0;
-            for (int i = 1;  i < Tur.Length; i++)
+            for (int i = 1; i < Tur.Length; i++)
             {
                 if (Tur[i] == 1)
                 {
@@ -380,8 +376,8 @@ namespace Yatzy
                     værdi = 6;
                 }
             }
-            if (fireEns == 0 && antal == 4 && tildelt == false && s10 != "-")                
-            {                                
+            if (fireEns == 0 && antal == 4 && tildelt == false && s10 != "-")
+            {
                 fireEns = antal * værdi;
                 PointTotal();
                 tildelt = true;
@@ -390,12 +386,12 @@ namespace Yatzy
         public void PointLilleStraight()
         {
             if (lilleStraight == 0 && (Tur[1] == 1 && Tur[2] == 2 && Tur[3] == 3 && Tur[4] == 4) && tildelt == false && s11 != "-")
-            {                
+            {
                 Console.WriteLine("Vil du tildele 15 point til Lille Straight?\nTryk 1 for ja\nTryk 2 for nej");
                 int valg = int.Parse(Console.ReadLine());
-                if(valg == 1) 
+                if (valg == 1)
                 {
-                 lilleStraight = 15;
+                    lilleStraight = 15;
                     PointTotal();
                     tildelt = true;
                 }
@@ -403,12 +399,12 @@ namespace Yatzy
         }
         public void PointStorStraight()
         {
-            if(storStraight == 0 && (Tur[1] == 2 && Tur[2] == 3 && Tur[3] == 4 && Tur[4] == 5 && Tur[5] == 6) && tildelt == false && s12 != "-")
+            if (storStraight == 0 && (Tur[1] == 2 && Tur[2] == 3 && Tur[3] == 4 && Tur[4] == 5 && Tur[5] == 6) && tildelt == false && s12 != "-")
             {
                 int valg;
                 Console.WriteLine("Vil du tildele 20 points til Store Straight?\nTryk 1 for ja\nTryk 2 for nej");
                 valg = int.Parse(Console.ReadLine());
-                if(valg == 1)
+                if (valg == 1)
                 {
                     storStraight = 20;
                     PointTotal();
@@ -418,10 +414,10 @@ namespace Yatzy
         }
         public void PointHus()
         {
-            if(Hus == 0 && (Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[4] == Tur[5] && Tur[3] != Tur[4] ) && tildelt == false && s13 != "-")
+            if (Hus == 0 && (Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[4] == Tur[5] && Tur[3] != Tur[4]) && tildelt == false && s13 != "-")
             {
                 sum = Tur[1] + Tur[2] + Tur[3] + Tur[4] + Tur[5];
-                Console.WriteLine("Vil du tildele {0} til Hus?\nTryk 1 for ja\nTryk 2 for nej",sum);
+                Console.WriteLine("Vil du tildele {0} til Hus?\nTryk 1 for ja\nTryk 2 for nej", sum);
                 int valg = int.Parse(Console.ReadLine());
                 if (valg == 1)
                 {
@@ -445,11 +441,11 @@ namespace Yatzy
         }
         public void PointChance()
         {
-            if(Chance == 0 && tildelt == false)
+            if (Chance == 0 && tildelt == false)
             {
                 Console.WriteLine("Vil du bruge chancen?\nTryk 1 for ja\n Tryk 2 for nej");
                 int valg = int.Parse(Console.ReadLine());
-                if(valg == 1)
+                if (valg == 1)
                 {
                     Chance = Tur[1] + Tur[2] + Tur[3] + Tur[4] + Tur[5];
                     PointTotal();
@@ -459,7 +455,7 @@ namespace Yatzy
         }
         public void PointYatzy()
         {
-            if (Yatzy == 0 && Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[3] == Tur[4] && Tur[4] == Tur[5] && tildelt == false && s14 != "-")                  
+            if (Yatzy == 0 && Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[3] == Tur[4] && Tur[4] == Tur[5] && tildelt == false && s14 != "-")
             {
                 Console.WriteLine("Vil du tildele Yatzy?\nTryk 1 for ja\nTryk 2 for nej");
                 int valg = int.Parse(Console.ReadLine());
@@ -479,7 +475,7 @@ namespace Yatzy
             Console.Write("Enere:          ");
             if (s1 == "-")
                 Console.WriteLine(s1);
-            else 
+            else
                 Console.WriteLine(Enere);
             Console.Write("Toere:          ");
             if (s2 == "-")
@@ -572,7 +568,7 @@ namespace Yatzy
                     PointToere();
                     break;
                 case 3:
-                    PointTreere(); 
+                    PointTreere();
                     break;
                 case 4:
                     PointFirere();
@@ -640,22 +636,22 @@ namespace Yatzy
                 s1 = "-";
                 tildelt = true;
             }
-            if(valg == 2 && (Toere == 0 || s2 == "-") && tildelt == false) //Toere
+            if (valg == 2 && (Toere == 0 || s2 == "-") && tildelt == false) //Toere
             {
                 s2 = "-";
                 tildelt = true;
             }
-            if(valg == 3 && (Treere == 0  || s3 == "-") && tildelt == false) //Treere
+            if (valg == 3 && (Treere == 0 || s3 == "-") && tildelt == false) //Treere
             {
                 s3 = "-";
                 tildelt = true;
             }
-            if(valg == 4 && (Firere == 0 || s4 == "-") && tildelt == false) //Firere
+            if (valg == 4 && (Firere == 0 || s4 == "-") && tildelt == false) //Firere
             {
                 s4 = "-";
                 tildelt = true;
             }
-            if(valg == 5 && (Femmere == 0 || s5 == "-") && tildelt == false) //Femmere
+            if (valg == 5 && (Femmere == 0 || s5 == "-") && tildelt == false) //Femmere
             {
                 s5 = "-";
                 tildelt = true;
@@ -665,7 +661,7 @@ namespace Yatzy
                 s6 = "-";
                 tildelt = true;
             }
-            if(valg == 7 && (etPar == 0 || s7 == "-") && tildelt == false) //Et par
+            if (valg == 7 && (etPar == 0 || s7 == "-") && tildelt == false) //Et par
             {
                 s7 = "-";
                 tildelt = true;
@@ -675,12 +671,12 @@ namespace Yatzy
                 s8 = "-";
                 tildelt = true;
             }
-            if(valg == 9 && (treEns == 0 || s9 == "-") && tildelt == false) //Tre ens
+            if (valg == 9 && (treEns == 0 || s9 == "-") && tildelt == false) //Tre ens
             {
                 s9 = "-";
                 tildelt = true;
             }
-            if(valg == 10 && (fireEns == 0 || s10 == "-") && tildelt == false) //Fire ens
+            if (valg == 10 && (fireEns == 0 || s10 == "-") && tildelt == false) //Fire ens
             {
                 s10 = "-";
                 tildelt = true;
@@ -695,7 +691,7 @@ namespace Yatzy
                 s12 = "-";
                 tildelt = true;
             }
-            if(valg == 13 && (Hus == 0 || s13 == "-") && tildelt == false) //Hus
+            if (valg == 13 && (Hus == 0 || s13 == "-") && tildelt == false) //Hus
             {
                 s13 = "-";
                 tildelt = true;
@@ -711,5 +707,5 @@ namespace Yatzy
                 tildelt = true;
             }
         }
-    }     
+    }
 }
