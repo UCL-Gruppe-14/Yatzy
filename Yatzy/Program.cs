@@ -99,7 +99,7 @@ namespace Yatzy
                 }
                 i++;
             }
-            if (p1.Total > p2.Total && p1.Total > p3.Total)
+            if (p1.Total > p2.Total && p1.Total > p3.Total) //Deklæring af vinder ved spillets afslutning
                 Console.WriteLine("Spillet er slut, pointsne er talt op, og {0} vandt med: {1} point", p1.Navn, p1.Total);
             if (p1.Total < p2.Total && p2.Total > p3.Total)
                 Console.WriteLine("Spillet er slut, pointsne er talt op, og {0} vandt med: {1} point", p2.Navn, p2.Total);

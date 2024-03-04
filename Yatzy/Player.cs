@@ -14,7 +14,7 @@ namespace Yatzy
     internal class Player
     {
 
-        Random r = new Random();
+        Random r = new Random(); //instantiating the random method, that allows to roll a random number
 
         int[] Tur = new int[6];
 
@@ -22,33 +22,31 @@ namespace Yatzy
 
         public String Navn;
         public int Enere, Toere, Treere, Firere, Femmere, Seksere, Sum, Bonus, etPar, toPar, treEns, fireEns, lilleStraight, storStraight, Hus, Chance, Yatzy, Total;
-        public string s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15;
+        public string s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15;       
         int sum;
-
-
-        // "Set" Method that sets name
-        public void setName()
+        
+        public void setName() // "Set" Method that sets name
         {
             Console.Write("Hvad er dit navn: ");
             Navn = Console.ReadLine();
         }
-        public void ChangeTur()
+        public void ChangeTur() //For loop that runs through Tur, and rolls the dice
         {
             for (int i = 1; i < Tur.Length; i++)
             {
                 Tur[i] = r.Next(1, 7);
             }
         }
-        public void Slag()
+        public void Slag() //"Sort" method, that sorts the dice, and prints to terminal
         {
             Array.Sort(Tur);
             Console.WriteLine("[{0} , {1} , {2} , {3} , {4}]", Tur[1], Tur[2], Tur[3], Tur[4], Tur[5]);
 
 
         }
-        public void Omslag()
+        public void Omslag() //User input, that defines the length of a for loop to reroll dices
         {
-            int antal;
+            int antal = 0;
             Console.Write("Hvor mange terninger vil du rulle om: ");
             antal = int.Parse(Console.ReadLine());
             for (int i = 1; i <= antal; i++)
@@ -59,10 +57,10 @@ namespace Yatzy
             }
 
         }
-        public void PointEnere()
+        public void PointEnere() //Method to add up dices with value of 1
         {
             int sum = 0;
-            int valg;
+            int valg;            
             if (Tur[1] == 1)
                 sum++;
             if (Tur[2] == 1)
@@ -85,7 +83,7 @@ namespace Yatzy
                 }
             }
         }
-        public void PointToere()
+        public void PointToere()//Method to add up dices with value of 2
         {
             int sum = 0;
             int valg;
@@ -111,7 +109,7 @@ namespace Yatzy
                 }
             }
         }
-        public void PointTreere()
+        public void PointTreere() //Method to add up dices with value of 3
         {
             int sum = 0;
             int valg;
@@ -385,7 +383,7 @@ namespace Yatzy
         }
         public void PointLilleStraight()
         {
-            if (lilleStraight == 0 && (Tur[1] == 1 && Tur[2] == 2 && Tur[3] == 3 && Tur[4] == 4) && tildelt == false && s11 != "-")
+            if (lilleStraight == 0 && (Tur[1] == 1 && Tur[2] == 2 && Tur[3] == 3 && Tur[4] == 4 && Tur[5] == 5) && tildelt == false && s11 != "-")
             {
                 Console.WriteLine("Vil du tildele 15 point til Lille Straight?\nTryk 1 for ja\nTryk 2 for nej");
                 int valg = int.Parse(Console.ReadLine());
@@ -518,12 +516,12 @@ namespace Yatzy
             if (s9 == "-")
                 Console.WriteLine();
             else
-                Console.WriteLine(Seksere);
+                Console.WriteLine(treEns);
             Console.Write("Fire Ens:       ");
             if (s10 == "-")
                 Console.WriteLine(s10);
             else
-                Console.WriteLine(Seksere);
+                Console.WriteLine(fireEns);
             Console.Write("LilleStraight:  " + s11);
             if (s11 == "-")
                 Console.WriteLine(s11);
@@ -564,25 +562,25 @@ namespace Yatzy
                 case 1: //Enere
                     PointEnere();
                     break;
-                case 2:
+                case 2: //Toere
                     PointToere();
                     break;
-                case 3:
+                case 3: //Treere
                     PointTreere();
                     break;
-                case 4:
+                case 4: //Firere
                     PointFirere();
                     break;
-                case 5:
+                case 5: //Femmere
                     PointFemmere();
                     break;
-                case 6:
+                case 6: //Seksere
                     PointSeksere();
                     break;
-                case 7:
+                case 7: //Et par
                     PointEtPar();
                     break;
-                case 8:
+                case 8: //
                     PointToPar();
                     break;
                 case 9:
@@ -611,7 +609,7 @@ namespace Yatzy
                     break;
             }
         }
-        public void Stryge()
+        public void Stryge() //Method to allow player to cross-out a point
         {
             Console.WriteLine("Hvad vil du stryge?");
             Console.WriteLine("1: Enere");
