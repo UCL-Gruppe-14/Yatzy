@@ -22,8 +22,8 @@ namespace Yatzy
 
         public String Navn;
         public int Enere, Toere, Treere, Firere, Femmere, Seksere, Sum, Bonus, etPar, toPar, treEns, fireEns, lilleStraight, storStraight, Hus, Chance, Yatzy, Total;
-        public string s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15;       
-        int sum;
+        public string s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15;
+               
         int t1, t2, t3, t4, t5, t6;
         
         public void setName() // "Set" Method that sets name
@@ -74,13 +74,14 @@ namespace Yatzy
                 sum++;
             if (Enere == 0 && sum > 0 && tildelt == false && s1 != "-")
             {
+                Enere = sum;
+                PointSum();
+                tildelt = true;
                 Console.WriteLine("Vil du tildele {0} til Enere?\n1: ja\n2: nej", sum);
                 valg = int.Parse(Console.ReadLine());
                 if (valg == 1)
                 {
-                    Enere = sum;
-                    PointSum();
-                    tildelt = true;
+                    
                 }
             }
         }
@@ -136,7 +137,7 @@ namespace Yatzy
                 }
             }
         }
-        public void PointFirere()
+        public void PointFirere() //Method to add up dices with value of 4
         {
             int sum = 0;
             int valg;
@@ -164,7 +165,7 @@ namespace Yatzy
             }
 
         }
-        public void PointFemmere()
+        public void PointFemmere() //Method to add up dices with value of 5
         {
             int sum = 0;
             int valg;
@@ -191,7 +192,7 @@ namespace Yatzy
                 }
             }
         }
-        public void PointSeksere()
+        public void PointSeksere() //Method to add up dices with value of 6
         {
             int sum = 0;
             int valg;
@@ -218,12 +219,12 @@ namespace Yatzy
                 }
             }
         }
-        public void PointSum()
+        public void PointSum() //Method to add up all the "low value" points
         {
-            int sum = Enere + Toere + Treere + Firere + Femmere + Seksere;
+            Sum = Enere + Toere + Treere + Firere + Femmere + Seksere;
             PointTotal();
         }
-        public void PointBonus()
+        public void PointBonus() //Method to award a bonus for getting a sum of 63
         {
 
             if (Sum >= 63)
@@ -232,7 +233,7 @@ namespace Yatzy
                 PointTotal();
             }
         }
-        public void PointEtPar()
+        public void PointEtPar() //Method to test and set etPar
         {
             int valg = 0;
             if (etPar == 0 && (Tur[1] == Tur[2] || Tur[2] == Tur[3] || Tur[3] == Tur[4] || Tur[4] == Tur[5]) && tildelt == false && s7 != "-")
@@ -284,7 +285,7 @@ namespace Yatzy
                 }
             }
         }
-        public void PointToPar()
+        public void PointToPar() //Method to test and set toPar
         {
             int a = 0;
             int b = 0;
@@ -293,32 +294,61 @@ namespace Yatzy
             int e = 0;
             int f = 0;
             int sum = 0;
-            for (int i = 1; i < Tur.Length; i++)
+            int par = 0;
+            for (int i = 1; i < 6; i++)
             {
-                a++;
-                b++;
-                c++;
-                d++;
-                e++;
-                f++;
+                if (Tur[i] == 1) 
+                    a++;
+                if (Tur[i] == 2) 
+                    b++;
+                if (Tur[i] == 3) 
+                    c++;
+                if (Tur[i] == 4) 
+                    d++;
+                if (Tur[i] == 5) 
+                    e++;
+                if (Tur[i] == 6) 
+                    f++;
             }
             if (a == 2)
+            {
                 sum = 1 * 2;
+                par++;
+            }                
             if (b == 2)
+            {
                 sum = sum + (2 * 2);
+                par++;
+            }
             if (c == 2)
+            {
                 sum = sum + (3 * 2);
+                par++;
+            }
             if (d == 2)
+            {
                 sum = sum + (4 * 2);
+                par++;
+            }
             if (e == 2)
+            {
                 sum = sum + (5 * 2);
+                par++;
+            }
             if (f == 2)
+            {
                 sum = sum + (6 * 2);
-            toPar = sum;
-            PointTotal();
-            tildelt = true;
+                par++;
+            }
+            if (toPar == 0 && s8 != "-" && par == 2)
+            {
+                toPar = sum;
+                PointTotal();
+                tildelt = true;
+            }
+            
         }
-        public void PointTreEns()
+        public void PointTreEns() //Method to test and set treEns
         {
             int x = 1;
             do
@@ -380,7 +410,7 @@ namespace Yatzy
                 }
             }
         }
-        public void PointFireEns()
+        public void PointFireEns() //Method to test and set fireEns
         {
             int antal = 0;
             int værdi = 0;
@@ -424,7 +454,7 @@ namespace Yatzy
                 tildelt = true;
             }
         }
-        public void PointLilleStraight()
+        public void PointLilleStraight() //Method to test and set lilleStraight
         {
             if (lilleStraight == 0 && (Tur[1] == 1 && Tur[2] == 2 && Tur[3] == 3 && Tur[4] == 4 && Tur[5] == 5) && tildelt == false && s11 != "-")
             {
@@ -438,7 +468,7 @@ namespace Yatzy
                 }
             }
         }
-        public void PointStorStraight()
+        public void PointStorStraight() //Method to test and set storStraight
         {
             if (storStraight == 0 && (Tur[1] == 2 && Tur[2] == 3 && Tur[3] == 4 && Tur[4] == 5 && Tur[5] == 6) && tildelt == false && s12 != "-")
             {
@@ -453,8 +483,9 @@ namespace Yatzy
                 }
             }
         }
-        public void PointHus()
+        public void PointHus() //Method to test and set Hus
         {
+            int sum;
             if (Hus == 0 && (Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[4] == Tur[5] && Tur[3] != Tur[4]) && tildelt == false && s13 != "-")
             {
                 sum = Tur[1] + Tur[2] + Tur[3] + Tur[4] + Tur[5];
@@ -480,7 +511,7 @@ namespace Yatzy
                 }
             }
         }
-        public void PointChance()
+        public void PointChance() //Method to test and set Chance
         {
             if (Chance == 0 && tildelt == false)
             {
@@ -494,7 +525,7 @@ namespace Yatzy
                 }
             }
         }
-        public void PointYatzy()
+        public void PointYatzy() //Method to test and set Chance
         {
             if (Yatzy == 0 && Tur[1] == Tur[2] && Tur[2] == Tur[3] && Tur[3] == Tur[4] && Tur[4] == Tur[5] && tildelt == false && s14 != "-")
             {
@@ -508,8 +539,8 @@ namespace Yatzy
                 }
             }
         }
-        public int PointTotal() => Total = Sum + Bonus + etPar + toPar + treEns + fireEns + lilleStraight + storStraight + Hus + Chance + Yatzy;
-        public void PointTavle()
+        public int PointTotal() => Total = Sum + Bonus + etPar + toPar + treEns + fireEns + lilleStraight + storStraight + Hus + Chance + Yatzy; //Method to add up all the points
+        public void PointTavle() //Method to print the updated scoreboard
         {
             Console.WriteLine("Spiller:        " + Navn);
             Console.WriteLine("-------------------");
@@ -592,7 +623,7 @@ namespace Yatzy
                 Console.WriteLine(Yatzy);
             Console.WriteLine("Total:          " + Total);
         }
-        public void Point()
+        public void Point() //Method to choose which points to test
         {
             int valg;
             Console.WriteLine("Hvad vil du tildele point til?");
@@ -623,7 +654,7 @@ namespace Yatzy
                 case 7: //Et par
                     PointEtPar();
                     break;
-                case 8: //
+                case 8: //To par
                     PointToPar();
                     break;
                 case 9:
