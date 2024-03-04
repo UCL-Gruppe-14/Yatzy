@@ -24,6 +24,7 @@ namespace Yatzy
         public int Enere, Toere, Treere, Firere, Femmere, Seksere, Sum, Bonus, etPar, toPar, treEns, fireEns, lilleStraight, storStraight, Hus, Chance, Yatzy, Total;
         public string s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15;       
         int sum;
+        int t1, t2, t3, t4, t5, t6;
         
         public void setName() // "Set" Method that sets name
         {
@@ -319,19 +320,61 @@ namespace Yatzy
         }
         public void PointTreEns()
         {
-            if (treEns == 0 && ((Tur[1] == Tur[2] && Tur[2] == Tur[3]) || (Tur[3] == Tur[4] && Tur[4] == Tur[5])) && tildelt == false && s9 != "-")
+            int x = 1;
+            do
             {
+                if (Tur[x] == 1)
+                    t1 = t1 + Tur[x];
+                if (Tur[x] == 2)
+                    t2 = t2 + Tur[x];
+                if (Tur[x] == 3)
+                    t3 = t3 + Tur[x];
+                if (Tur[x] == 4)
+                    t4 = t4 + Tur[x];
+                if (Tur[x] == 5)
+                    t5 = t5 + Tur[x];
+                if (Tur[x] == 6)
+                    t6 = t6 + Tur[x];
+                x++;
+            } while (x <= 5);
+            if (treEns == 0 && (t1 == 3 || t2 == 3 || t3 == 3 || t4 == 3 || t5 == 3 || t6 == 3) && tildelt == false && s9 != "-")
+            {
+                
                 Console.WriteLine("Vil du tildele tre ens?\nTryk 1 for ja\nTryk 2 for nej");
                 int valg = int.Parse(Console.ReadLine());
-                if (valg == 1 && (Tur[1] == Tur[2] && Tur[2] == Tur[3]))
+                if (valg == 1 && t1 == 3)
                 {
-                    treEns = Tur[1] + Tur[2] + Tur[3];
+                    treEns = t1;
                     PointTotal();
                     tildelt = true;
                 }
-                else if (valg == 1)
+                else if (valg == 1 && t2 == 3)
                 {
-                    treEns = Tur[3] + Tur[4] + Tur[5];
+                    treEns = 3 * 2;
+                    PointTotal();
+                    tildelt = true;
+                }
+                else if (valg == 1 && t3 == 3)
+                {
+                    treEns = 3 * 3;
+                    PointTotal();
+                    tildelt = true;
+                }
+                else if (valg == 1 && t4 == 3)
+                {
+                    treEns = 3 * 4;
+                    PointTotal();
+                    tildelt = true;
+                }
+                else if (valg == 1 && t5 == 3)
+                {
+                    treEns = 3 * 5;
+                    PointTotal();
+                    tildelt = true;
+                }
+                else if (valg == 1 && t6 == 3)
+                {
+                    treEns = 3 * 6;
                     PointTotal();
                     tildelt = true;
                 }
