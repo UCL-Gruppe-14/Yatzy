@@ -39,7 +39,7 @@ namespace Yatzy
                 }
                 if (antalSpillere == 3)
                 {
-                    Console.WriteLine("Spiller 3");
+                    Console.WriteLine("Spiller 4");
                     p3.setName();//navngivning af tredje spiller
                 }
             } while (AntalSpillere == true);
